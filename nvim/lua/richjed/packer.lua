@@ -30,20 +30,26 @@ return require('packer').startup(function(use)
 
     -- telescope
     use {
-        'nvim-telescope/telescope.nvim', 
+        'nvim-telescope/telescope.nvim',
         tag = '0.1.1',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
 
     -- treesitter
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-    
+
     -- This allows the use of :TSPlaygroundToggle
     use('nvim-treesitter/playground')
 
     -- Harpoon (allows to navigate files easily)
     use('theprimeagen/harpoon')
 
+    -- Lsp
+    use {
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
+        'neovim/nvim-lspconfig',
+    }
 --------------------------------------------------------------------
 -- How to load plugins
     -- My plugins here
