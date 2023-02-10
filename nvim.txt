@@ -1,0 +1,76 @@
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
+  -- My plugins here
+  -- use 'foo1/bar1.nvim'
+  -- use 'foo2/bar2.nvim'
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
+
+
+use 'nvim-tree/nvim-web-devicons'
+use 'nvim-tree/nvim-tree.lua'
+use 'rmehri01/onenord.nvim'
+
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- setup
+require("nvim-tree").setup({
+  filters = {
+    -- allow dot files
+    dotfiles = true,
+  },
+})
+
+vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle<CR>')
+
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the four listed parsers should always be installed)
+  ensure_installed = { "c", "lua", "vim", "rust", "cpp", "python", "html" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+  },
+}
+
+
+
+curl -fLo "Hack Bold Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Bold/complete/Hack%20Bold%20Nerd%20Font%20Complete%20Windows%20Compatible.ttf
+
+-- For LSP (https://itsfoss.com/install-nodejs-ubuntu/)
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install nodejs

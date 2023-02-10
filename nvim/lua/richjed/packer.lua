@@ -50,6 +50,19 @@ return require('packer').startup(function(use)
         'williamboman/mason-lspconfig.nvim',
         'neovim/nvim-lspconfig',
     }
+
+---   LSP: `lspconfig` & `mason-lspconfig.nvim`
+---   DAP: `nvim-dap`
+---   Linters: `null-ls.nvim` or `nvim-lint`
+---   Formatters: `null-ls.nvim` or `formatter.nvim`
+--
+--formatter.nvim        https://github.com/mhartington/formatter.nvim
+--lspconfig             https://github.com/neovim/nvim-lspconfig
+--mason-lspconfig.nvim  https://github.com/williamboman/mason-lspconfig.nvim
+--null-ls.nvim          https://github.com/jose-elias-alvarez/null-ls.nvim
+--nvim-dap              https://github.com/mfussenegger/nvim-dap
+--nvim-lint             https://github.com/mfussenegger/nvim-lint
+
 --------------------------------------------------------------------
 -- How to load plugins
     -- My plugins here
