@@ -44,25 +44,32 @@ return require('packer').startup(function(use)
     -- Harpoon (allows to navigate files easily)
     use('theprimeagen/harpoon')
 
-    -- Lsp
+    -- This is for Undotree
+    use('mbbill/undotree')
+
+    -- This is for lsp-zero
     use {
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'neovim/nvim-lspconfig',
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},             -- Required
+            {'williamboman/mason.nvim'},           -- Optional
+            {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},         -- Required
+            {'hrsh7th/cmp-nvim-lsp'},     -- Required
+            {'hrsh7th/cmp-buffer'},       -- Optional
+            {'hrsh7th/cmp-path'},         -- Optional
+            {'saadparwaiz1/cmp_luasnip'}, -- Optional
+            {'hrsh7th/cmp-nvim-lua'},     -- Optional
+
+            -- Snippets
+            {'L3MON4D3/LuaSnip'},             -- Required
+            {'rafamadriz/friendly-snippets'}, -- Optional
+        }
     }
-
----   LSP: `lspconfig` & `mason-lspconfig.nvim`
----   DAP: `nvim-dap`
----   Linters: `null-ls.nvim` or `nvim-lint`
----   Formatters: `null-ls.nvim` or `formatter.nvim`
---
---formatter.nvim        https://github.com/mhartington/formatter.nvim
---lspconfig             https://github.com/neovim/nvim-lspconfig
---mason-lspconfig.nvim  https://github.com/williamboman/mason-lspconfig.nvim
---null-ls.nvim          https://github.com/jose-elias-alvarez/null-ls.nvim
---nvim-dap              https://github.com/mfussenegger/nvim-dap
---nvim-lint             https://github.com/mfussenegger/nvim-lint
-
 --------------------------------------------------------------------
 -- How to load plugins
     -- My plugins here
